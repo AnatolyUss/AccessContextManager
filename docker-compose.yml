@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - access_context_manager-network
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    networks:
+      - access_context_manager-network
+
+networks:
+  access_context_manager-network:
+    driver: bridge
